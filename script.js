@@ -245,7 +245,7 @@ brandsMenuButton?.addEventListener('click', () => {
   brandsMenuButton.setAttribute('aria-expanded', String(isOpen));
 });
 const extraBrands = [
-  { name: 'Knox', className: 'knox', logo: 'assets/logo-knox-leistung.png' },
+  { name: 'Knox', className: 'knox', logo: 'assets/logo-knox-leistung.webp' },
 ];
 const allBrandsLink = brandsMenu?.querySelector('[data-brand-filter=""]');
 extraBrands.forEach(({ name }) => {
