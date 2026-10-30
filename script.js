@@ -23,6 +23,8 @@ let favorites = Array.isArray(savedSelection.favorites) ? savedSelection.favorit
 let activeList = 'cart';
 
 const formatCOP = value => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(value);
+// Total que se muestra al cliente: no muestra $0 cuando hay productos con precio por confirmar.
+const totalLabel = (subtotal, pendingPrices) => pendingPrices ? (subtotal ? `${formatCOP(subtotal)} + por confirmar` : 'Por confirmar') : formatCOP(subtotal);
 const productData = card => {
   const variant = card.querySelector('.product-variant')?.selectedOptions[0];
   const baseName = card.dataset.product;
@@ -59,7 +61,7 @@ const cartSummary = () => {
   const totalUnits = cart.reduce((total, item) => total + item.quantity, 0);
   const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
   const pendingPrices = cart.filter(item => !item.price).length;
-  return `<section class="cart-summary"><div><span>Tu selección</span><strong>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en ${cart.length} referencia${cart.length === 1 ? '' : 's'}</strong></div><button type="button" data-clear-cart>Vaciar carrito</button><dl class="cart-totals"><div><dt>Subtotal con precios publicados</dt><dd>${formatCOP(subtotal)}</dd></div><div><dt>Envío</dt><dd>Por confirmar</dd></div><div class="cart-grand-total"><dt>Total de productos</dt><dd>${formatCOP(subtotal)}</dd></div></dl>${pendingPrices ? `<p>${pendingPrices} producto${pendingPrices === 1 ? '' : 's'} aún ${pendingPrices === 1 ? 'requiere' : 'requieren'} confirmar precio antes del pago.</p>` : '<p>El costo de envío se confirma según la dirección de entrega.</p>'}</section>`;
+  return `<section class="cart-summary"><div><span>Tu selección</span><strong>${totalUnits} unidad${totalUnits === 1 ? '' : 'es'} en ${cart.length} referencia${cart.length === 1 ? '' : 's'}</strong></div><button type="button" data-clear-cart>Vaciar carrito</button><dl class="cart-totals"><div><dt>Subtotal con precios publicados</dt><dd>${subtotal ? formatCOP(subtotal) : 'Por confirmar'}</dd></div><div><dt>Envío</dt><dd>Por confirmar</dd></div><div class="cart-grand-total"><dt>Total de productos</dt><dd>${totalLabel(subtotal, pendingPrices)}</dd></div></dl>${pendingPrices ? `<p>${pendingPrices} producto${pendingPrices === 1 ? '' : 's'} aún ${pendingPrices === 1 ? 'requiere' : 'requieren'} confirmar precio antes del pago.</p>` : '<p>El costo de envío se confirma según la dirección de entrega.</p>'}</section>`;
 };
 const paymentOptions = () => {
   const onlinePaymentReady = cart.length > 0 && cart.every(item => item.price > 0);
@@ -292,7 +294,7 @@ const renderCheckout = () => {
   const pendingPrices = cart.filter(item => !item.price).length;
   checkoutCount.textContent = `${units} artículo${units === 1 ? '' : 's'} en el carrito`;
   checkoutItems.innerHTML = cart.map(item => `<div class="checkout-item"><span>${item.quantity}×</span><strong>${item.name}<small>${item.price ? `${formatCOP(item.price)} c/u` : 'Precio por confirmar'}</small></strong><b>${item.price ? formatCOP(item.price * item.quantity) : 'Pendiente'}</b></div>`).join('');
-  checkoutTotals.innerHTML = `<div><span>Subtotal</span><strong>${formatCOP(subtotal)}</strong></div><div><span>Envío</span><strong>${deliveryMethod === 'Recoger en tienda' ? formatCOP(0) : 'Por confirmar'}</strong></div><div class="checkout-grand-total"><span>Total de productos</span><strong>${formatCOP(subtotal)}</strong></div>`;
+  checkoutTotals.innerHTML = `<div><span>Subtotal</span><strong>${subtotal ? formatCOP(subtotal) : 'Por confirmar'}</strong></div><div><span>Envío</span><strong>${deliveryMethod === 'Recoger en tienda' ? formatCOP(0) : 'Por confirmar'}</strong></div><div class="checkout-grand-total"><span>Total de productos</span><strong>${totalLabel(subtotal, pendingPrices)}</strong></div>`;
   checkoutNotice.textContent = pendingPrices ? `${pendingPrices} producto${pendingPrices === 1 ? '' : 's'} ${pendingPrices === 1 ? 'tiene' : 'tienen'} el precio pendiente. Confirma el pedido por WhatsApp antes de pagar.` : deliveryMethod === 'Domicilio' ? 'El valor del envío se confirma según la dirección antes de pagar.' : 'Recoger en tienda no genera costo de envío.';
 };
 const openCheckout = () => {
@@ -642,7 +644,8 @@ function fillProductDetail(sourceCard) {
   const label = card.querySelector('p')?.textContent.trim() || '';
   const [category, brand] = label.split(' · ');
   const name = card.querySelector('h3')?.textContent.trim() || card.dataset.product;
-  document.querySelector('#productPreviewCategory').textContent = brand || category || '';
+  // Solo la marca; la categoría ya aparece en la ruta de arriba.
+  document.querySelector('#productPreviewCategory').textContent = brand || '';
   const categoryLink = document.querySelector('#detailCategoryLink');
   categoryLink.textContent = card.dataset.category || category || 'Productos';
   categoryLink.dataset.detailCategory = card.dataset.category || '';

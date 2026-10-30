@@ -2216,3 +2216,5 @@ body .cutout-jug { left: 27%; width: 17%; }
   body .cutout-jug { left: 38%; width: 21%; }
 }
 @media (max-width: 850px) { body .cutout-cement-group { left: 2%; width: 40%; } body .cutout-jug { left: 40%; width: 19%; } }
+/* Sin marca, la línea de marca no ocupa espacio */
+body .product-detail .product-preview-copy .detail-brand:empty { display: none; }
