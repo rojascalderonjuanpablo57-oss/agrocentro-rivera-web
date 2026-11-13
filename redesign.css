@@ -461,20 +461,8 @@ body .category small {
   color: inherit;
   opacity: .85;
 }
-body .category .cat-count {
-  position: absolute;
-  z-index: 1;
-  top: 18px;
-  left: 18px;
-  padding: 5px 10px;
-  font-style: normal;
-  font-size: .78rem;
-  font-weight: 700;
-  background: var(--carbon);
-  color: #fff;
-}
-body .category:nth-child(2) .cat-count,
-body .category:nth-child(5) .cat-count { background: var(--retono); color: var(--carbon); }
+
+
 body .cat-img {
   position: absolute;
   right: -6%;
@@ -713,7 +701,7 @@ body footer .brand img { filter: brightness(0) invert(1); }
   body .category { padding: 18px; }
   body .category strong { font-size: 1.8rem; }
   body .category small { font-size: .8rem; }
-  body .category .cat-count { top: 12px; left: 12px; }
+  
   body .about-tag strong { font-size: 4rem; }
   body .product-card h3, body .best-seller-card h3 { font-size: 1.08rem; }
   body .product-price, body .best-price { font-size: 1.25rem; }
@@ -1587,15 +1575,8 @@ body .category strong { font-weight: 700; font-size: clamp(1.6rem, 2.4vw, 2.1rem
 body .category:nth-child(1) strong { font-size: clamp(2.4rem, 4.4vw, 3.6rem); }
 body .category small { opacity: 1; color: var(--texto-suave); }
 body .category:nth-child(1) small { color: #d9e7cf; }
-body .category .cat-count,
-body .category:nth-child(2) .cat-count,
-body .category:nth-child(5) .cat-count {
-  border-radius: 999px;
-  background: #eef5e0;
-  color: var(--monte);
-  font-weight: 600;
-}
-body .category:nth-child(1) .cat-count { background: rgba(255, 255, 255, .14); color: #fff; }
+
+
 body .cat-img,
 body .category .cat-img-paint { rotate: 0deg; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .12)); }
 body .cat-img-blend { filter: none; }
@@ -1844,7 +1825,7 @@ body .hero .button.secondary:hover { transform: translateY(-2px); background: rg
 /* Categorías: más contraste y vida en las imágenes */
 body .category:nth-child(2) { background: var(--carbon); color: #fff; border-color: var(--carbon); }
 body .category:nth-child(2) small { color: #c9cec2; }
-body .category:nth-child(2) .cat-count { background: rgba(255, 255, 255, .12); color: #fff; }
+
 body .category:nth-child(1)::before,
 body .category:nth-child(2)::before {
   content: "";

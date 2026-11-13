@@ -423,11 +423,6 @@ updateBackToTop();
   update();
   setInterval(update, 60000);
 })();
-// Número de referencias por categoría en las tarjetas de inicio.
-document.querySelectorAll('[data-count-category]').forEach(tile => {
-  const total = document.querySelectorAll(`.product-card[data-category="${tile.dataset.countCategory}"]:not([hidden])`).length;
-  tile.querySelector('.cat-count').textContent = total ? `${total} referencia${total === 1 ? '' : 's'}` : 'Pregunta por disponibilidad';
-});
 // Aparición suave de categorías y tarjetas al entrar en pantalla.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const revealTargets = document.querySelectorAll('.categories .category, .best-seller-card, #productos .product-card, .promo, .about');
