@@ -264,7 +264,7 @@ body .hero-cutout {
   animation: entrar .9s var(--ease-out) both;
   pointer-events: none;
 }
-body .cutout-sprayer { width: 34%; left: -9%; bottom: 2%; --giro: -8deg; animation-delay: .35s; }
+
 body .cutout-jug { width: 21%; left: 21%; bottom: -3%; --giro: 6deg; animation-delay: .5s; }
 body .cutout-drill { width: 33%; right: 3%; bottom: -4%; --giro: -4deg; animation-delay: .65s; }
 body .hero-cutout { transform: rotate(var(--giro)); }
@@ -686,7 +686,7 @@ body footer .brand img { filter: brightness(0) invert(1); }
   body .hero h1 { font-size: clamp(3.3rem, 16vw, 5.6rem); }
   body .hero-photo { min-height: 340px; }
   body .hero-photo > img.hero-background { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
-  body .cutout-sprayer { width: 40%; left: -4%; }
+  
   body .cutout-jug { width: 25%; left: 32%; }
   body .cutout-drill { width: 40%; right: -2%; }
   body .hero-seal { width: 112px; height: 112px; top: 44px; right: 16px; }
@@ -1775,7 +1775,7 @@ body .hero-cutout {
   display: block;
   filter: drop-shadow(0 16px 20px rgba(0, 0, 0, .35));
 }
-body .cutout-sprayer { width: 27%; left: -5%; bottom: 3%; --giro: -4deg; }
+
 body .cutout-jug { display: none; }
 body .cutout-drill { width: 27%; right: 4%; bottom: -2%; --giro: 0deg; }
 body .hero-seal { z-index: 3; animation: aparecer .6s .8s ease-out both; }
@@ -1896,7 +1896,7 @@ body .about-tag { box-shadow: 10px 10px 0 #eef5e0; }
 
 @media (max-width: 850px) {
   body .hero-photo > img.hero-background { clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%); }
-  body .cutout-sprayer { width: 34%; left: -2%; }
+  
   body .cutout-drill { width: 36%; right: 0; }
   body .category:nth-child(2) { background: var(--carbon); color: #fff; }
   body .promo-photo { clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%); }
@@ -2151,8 +2151,8 @@ body .detail-related-item:hover { transform: translateY(-3px); box-shadow: var(-
 body .detail-related-item img { width: 100%; height: 96px; object-fit: contain; }
 body .detail-related-item span { font-size: .86rem; font-weight: 600; line-height: 1.25; color: var(--carbon); }
 body .detail-related-item small { font-size: .8rem; font-weight: 700; color: var(--monte); }
-body .detail-trigger { cursor: pointer; }
-body .detail-trigger:hover { color: var(--monte); }
+
+
 
 @media (max-width: 760px) {
   body .product-detail { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); }
@@ -2171,24 +2171,20 @@ body .detail-trigger:hover { color: var(--monte); }
 }
 
 /* Portada: bloques (construcción), abono Power Root (agrícola) y taladro (herramienta) */
-body .cutout-blocks { width: 30%; left: -6%; bottom: -3%; --giro: -3deg; animation-delay: .35s; }
 body .cutout-jug { display: block; width: 19%; left: 26%; bottom: -2%; --giro: 3deg; animation-delay: .5s; }
 body .cutout-drill { animation-delay: .65s; }
 @media (max-width: 850px) {
-  body .cutout-blocks { width: 36%; left: -3%; }
+  
   body .cutout-jug { width: 23%; left: 33%; }
 }
 body .detail-variant[hidden] { display: none; }
 
 /* Portada: bulto de cemento Cemex en lugar de los bloques */
-body .cutout-cement { width: 21%; left: -3%; bottom: -2%; --giro: -5deg; animation-delay: .35s; }
-@media (max-width: 850px) {
-  body .cutout-cement { width: 26%; left: 0; }
-}
-/* La foto del bulto trae margen alrededor; se agranda para que el bulto se vea del tamaño de los demás */
-body .cutout-cement { width: 36%; left: -11%; bottom: -7%; }
+
+
+/* La foto del bulto trae margen alrededor; 
 body .cutout-jug { left: 20%; }
-@media (max-width: 850px) { body .cutout-cement { width: 42%; left: -9%; } body .cutout-jug { left: 27%; } }
+@media (max-width: 850px) {  body .cutout-jug { left: 27%; } }
 /* Toda la tarjeta abre la ficha del producto */
 body .product-card, body .best-seller-card { cursor: pointer; }
 body .product-card:hover h3, body .best-seller-card:hover h3 { color: var(--monte); }
@@ -2196,7 +2192,6 @@ body .product-detail .product-preview-image-wrap:not([data-icon=""])::before { c
 body .product-detail .product-preview-image-wrap img[hidden] { display: none; }
 
 /* Portada: los tres cementos (Oriente, Alión y Cemex) agrupados como bultos apilados */
-body .cutout-cement { display: none; }
 body .cutout-cement-group {
   display: flex;
   align-items: flex-end;

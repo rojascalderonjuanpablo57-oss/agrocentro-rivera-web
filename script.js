@@ -86,12 +86,6 @@ const renderPanel = () => {
   panelItems.querySelectorAll('[data-quantity]').forEach(input => input.addEventListener('change', () => { const item = cart[Number(input.dataset.quantity)]; item.quantity = Math.min(5000, Math.max(1, Number.parseInt(input.value, 10) || 1)); syncCounters(); renderPanel(); }));
   panelItems.querySelectorAll('.payment-method').forEach(method => method.addEventListener('click', () => { panelItems.querySelectorAll('.payment-method').forEach(button => button.classList.remove('selected')); method.classList.add('selected'); const note = panelItems.querySelector('.payment-note'); if (note && method.dataset.paymentNote) note.textContent = method.dataset.paymentNote; }));
 };
-const labelThunderboltHost = () => {
-  const anonymousHosts = Array.from(document.body.children).filter(element => element.tagName === 'DIV' && !element.id && !element.className);
-  anonymousHosts.at(-1)?.classList.add('thunderbolt-host');
-};
-labelThunderboltHost();
-new MutationObserver(labelThunderboltHost).observe(document.body, { childList: true });
 const setPurchasePanelState = isOpen => document.body.classList.toggle('purchase-panel-open', isOpen);
 const openPanel = list => { activeList = list; renderPanel(); sidePanel.classList.add('open'); panelOverlay.classList.add('open'); sidePanel.setAttribute('aria-hidden', 'false'); setPurchasePanelState(true); };
 const closePanel = () => { sidePanel.classList.remove('open'); panelOverlay.classList.remove('open'); sidePanel.setAttribute('aria-hidden', 'true'); if (!checkoutModal.classList.contains('open')) setPurchasePanelState(false); };
