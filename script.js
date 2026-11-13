@@ -346,27 +346,6 @@ checkoutForm?.addEventListener('submit', event => {
   announce(allItemsHavePrice ? 'Pedido listo para pagar' : 'Confirma los precios pendientes por WhatsApp');
 });
 syncCounters();
-const brandLogoOverrides = {
-  bler: { src: 'https://pinturasbler.com/wp-content/uploads/2020/07/Logo-BLER-TRANS.png', alt: 'Bler' },
-  minerales: { src: 'https://d2d8zmg70jcjrl.cloudfront.net/images/upload/115999/sml/6690640a8d3948.33738342.jpg', alt: 'Minerales del Sur' }
-};
-Object.entries(brandLogoOverrides).forEach(([brand, logo]) => {
-  const chip = document.querySelector(`.brand-chip.${brand}`);
-  if (!chip) return;
-  chip.classList.remove('wordmark');
-  chip.classList.add('logo-brand');
-  chip.innerHTML = `<img src="${logo.src}" alt="${logo.alt}" />`;
-});
-const totalLogo = document.querySelector('.brand-chip.total img');
-if (totalLogo) {
-  totalLogo.src = 'https://static.wixstatic.com/media/811b94_b6003ee24e0e4a59b4fab93da012b7d8~mv2.png';
-  totalLogo.alt = 'Total';
-}
-const pintulandLogo = document.querySelector('.brand-chip.pintuland img');
-if (pintulandLogo) {
-  pintulandLogo.src = 'https://iconape.com/wp-content/files/pr/297825/png/297825.png';
-  pintulandLogo.alt = 'Pintuland';
-}
 const backToTop = document.querySelector('#backToTop');
 const updateBackToTop = () => {
   const visible = window.scrollY > 420;
